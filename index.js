@@ -18,7 +18,9 @@ node_server.use(bodyparser.urlencoded({ extended:true }));
 node_server.use(cors());
 node_server.use("/",app_server)
 
-
+node_server.get('/', (req, res) => {
+    res.status(201).json("Home GET Request");
+});
 
 
 const port= process.env.PORT || 5000;
