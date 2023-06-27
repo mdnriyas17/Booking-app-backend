@@ -107,7 +107,7 @@ user_router.delete('/:id', async (req, res, next) => {   //localhost:5000/user/:
     })
 })
 
-user_router.post("/user/login", async (req, res, next) => {
+user_router.post("/login", async (req, res, next) => {
     const {
         email,
         password

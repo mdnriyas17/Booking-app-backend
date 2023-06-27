@@ -94,10 +94,6 @@ movie_router.post('/movie/create',async  (req, res, next)=> {  //localhost:5000/
     
 });
 
-
-
-
-
 movie_router.get('/movie/:id',async(req,res,next)=>{
     let id = req.params.id;
     let movies;
