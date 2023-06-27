@@ -3,11 +3,27 @@ const movie_router = require("express").Router();
 const Adminmodel = require("../model/Admin-model");
 const Moviemodel = require("../model/Movie-model");
 const jwt = require("jsonwebtoken");
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
+
+movie_router.get('/',async(req,res,next)=>{
+    let movies
+    try {
+        movies = await Moviemodel.find().populate().lean()
+    } catch (err) { 
+        return next(err)
+    }
+    if (!movies) {
+        return res.status(500).json({
+            message: "unexpected error occured"
+        })
+    }
+    return res.status(200).json({ movies })
+})
 
 
 //post
-movie_router.post('/create',async  (req, res, next)=> {  //localhost:5000/movie/create
+movie_router.post('/movie/create',async  (req, res, next)=> {  //localhost:5000/movie/create
 
 
     if(req.headers.authorization){
@@ -74,35 +90,15 @@ movie_router.post('/create',async  (req, res, next)=> {  //localhost:5000/movie/
             return res.status(500).json({message:"Movie request failed"})
          }
          return res.status(200).json({movie})
-    }
-     
-   
-
-       
-   
-
-    
+    } 
     
 });
 
 
 
 
-movie_router.get('/',async(req,res,next)=>{
-    let movies
-    try {
-        movies = await Moviemodel.find().populate().lean()
-    } catch (err) { 
-        return next(err)
-    }
-    if (!movies) {
-        return res.status(500).json({
-            message: "unexpected error occured"
-        })
-    }
-    return res.status(200).json({ movies })
-})
-movie_router.get('/:id',async(req,res,next)=>{
+
+movie_router.get('/movie/:id',async(req,res,next)=>{
     let id = req.params.id;
     let movies;
     try {

@@ -6,8 +6,6 @@ const mongoose = require("mongoose")
 const booking_router = require("express").Router();
 
 
-
-
 //post
 booking_router.post('/create', async (req, res, next) => {  //localhost:5000/booking/create
     const {
