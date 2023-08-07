@@ -16,5 +16,5 @@ const mongoose = require('mongoose');
           required:true
     }]
 })
-const Adminmodel = mongoose.model('Admin',Admin_schema);
+const Adminmodel = mongoose.model('test',Admin_schema);
 module.exports = Adminmodel;
